@@ -8,12 +8,13 @@ import { createEmotionCache } from '../utils/create-emotion-cache';
 import { theme } from '../theme';
 
 const clientSideEmotionCache = createEmotionCache();
-
+firebaseConfig();
+Register();
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   const getLayout = Component.getLayout ?? ((page) => page);
-
+  
   return (
     <CacheProvider value={emotionCache}>
       <Head>

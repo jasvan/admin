@@ -14,9 +14,15 @@ import {
   Typography
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { firebaseRegistrarUsuario } from 'src/utils/FirebaseUtil';
 
 const Register = () => {
+
   const router = useRouter();
+  const registrarUsuario = (usuario)=>{
+    firebaseRegistrarUsuario(usuario.email, usuario.password);
+    router.push('/login', {replace: true});
+  }
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -55,8 +61,8 @@ const Register = () => {
           'This field must be checked'
         )
     }),
-    onSubmit: () => {
-      router.push('/');
+    onSubmit: (usuario) => {      
+      registrarUsuario(usuario);
     }
   });
 
